@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes App</title>
+  <link rel="stylesheet" href="src/styles.css">
+  <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.min.css">
+</head>
+
+<body>
+  <div class="toolbar-container">
+
+    <div class="toolbar-left">
+      <div class="Pen">
+        <i class="fa-solid fa-pen"></i>
+      </div>
+
+      <div class="Highlight">
+        <i class="fa-solid fa-highlighter"></i>
+      </div>
+      <div class="Erase">
+        <i class="fa-solid fa-eraser"></i>
+      </div>
+    </div>
+
+    <div class="toolbar-right">
+      <div class="Undo">
+        <i class="fa-solid fa-undo"></i>
+      </div>
+      <div class="Redo">
+        <i class="fa-solid fa-redo"></i>
+      </div>
+    </div>
+
+
+    <!-- Temporarily Removed -->
+    <!-- <label>Brush Size</label>
+      <button onclick="setBrushSize(5)">Small</button>
+      <button onclick="setBrushSize(10)">Medium</button>
+      <button onclick="setBrushSize(15)">Large</button>
+      <button onclick="setBrushSize(20)">Extra Large</button>
+      <button onclick="clearCanvas()">Clear Drawing</button> -->
+  </div>
+
+  <div class="side-toolbar">
+    <div class="BackButton">
+      <i class="fas fa-arrow-left"></i>
+    </div>
+    <div class="Cross">
+      <i class="fas fa-times"></i>
+    </div>
+  </div>
+
+
+
+  <main>
+    <div class="canvas-container">
+      <canvas id="drawingCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+    </div>
+  </main>
+  <script src="src/script.js"></script>
+</body>
+
+</html>
