@@ -3,11 +3,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const dropdownMenu = document.querySelector('.Pen .dropdown-menu');
   const brushPlus = document.getElementById('Brush-plus');
   const brushMinus = document.getElementById('Brush-minus');
+  const highlighterButton = document.getElementById('highlighter-btn');
 
-  penIcon.addEventListener('click', (event) => {
-    event.stopPropagation();
-    toggleDropdown();
+  let holdTimeout;
+
+  highlighterButton.addEventListener('click', () => {
+    highlighter();
   });
+
+
+  penIcon.addEventListener('mousedown', (event) => {
+    event.stopPropagation();
+    holdTimeout = setTimeout(toggleDropdown, 500); // added hold functionality
+  });
+
+  penIcon.addEventListener('mouseup', (event) => {
+    event.stopPropagation();
+    clearTimeout(holdTimeout);
+  });
+
+  penIcon.addEventListener('mouseleave', (event) => {
+    event.stopPropagation();
+    clearTimeout(holdTimeout);
+  });
+  penIcon.addEventListener('click', () => {
+   pen();
+  });
+
 
   brushPlus.addEventListener('click', () => {
     changeBrushSize(1);
