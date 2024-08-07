@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="Highlight">
-        <i class="fa-solid fa-highlighter"></i>
+        <i class="fa-solid fa-highlighter" onclick="highlighter()"></i>
       </div>
       <div class="Erase">
         <i class="fa-solid fa-eraser"></i>
@@ -36,13 +36,14 @@
 
 
     <div class="toolbar-right">
-      <div class="col" style="background-color: red;">
+      <div class="col" style="background-color: red;" onclick="setBrushColor('#FF0000')">
       </div>
-      <div class="col" style="background-color: blue;">
+      <div class="col" style="background-color: blue;" onclick="setBrushColor('#0000ff')">
       </div>
-      <div class="col" style="background-color: yellow;">
+      <div class="col" style="background-color: yellow;" onclick="setBrushColor('#ffff00')">
       </div>
       <div class="Redo">
+        <!-- add function for adding colors -->
         <i class="fa-solid fa-plus"></i>
       </div>
     </div>
@@ -103,6 +104,14 @@
       <canvas id="drawingCanvas"></canvas>
     </div>
   </main>
+
+
+
+
+
+
+
+  <script src="src/draw.js"></script>
   <script src="src/script.js"></script>
 </body>
 
