@@ -8,6 +8,7 @@ let translatePos = { x: 0, y: 0 };
 let isPanning = false;
 let panStart = { x: 0, y: 0 };
 const tension = 0;
+const currentColor = '#fff'; 
 
 const adjustControlPoint = (p0, p1, p2) => {
   return {
@@ -28,15 +29,13 @@ const redrawCanvas = () => {
 
     context.beginPath();
     context.moveTo(points[0].x, points[0].y);
-    context.lineWidth = points[0].size;
-    context.lineJoin = 'round';
-    context.lineCap = 'round';
 
-    for (let i = 0; i < points.length - 2; i++) {
-      const controlPoint = adjustControlPoint(points[i], points[i + 1], points[i + 2]);
-      context.quadraticCurveTo(controlPoint.x, controlPoint.y, points[i + 2].x, points[i + 2].y);
+    for (let i = 1; i < points.length - 2; i++) {
+      const cp = adjustControlPoint(points[i - 1], points[i], points[i + 1]);
+      context.quadraticCurveTo(points[i].x, points[i].y, cp.x, cp.y);
     }
 
+    context.strokeStyle = currentColor; 
     context.stroke();
   });
 
@@ -134,3 +133,58 @@ window.addEventListener('resize', () => {
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 redrawCanvas();
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const penIcon = document.querySelector('.Pen .fa-pen');
+  const dropdownMenu = document.querySelector('.Pen .dropdown-menu');
+  const brushPlus = document.getElementById('Brush-plus');
+  const brushMinus = document.getElementById('Brush-minus');
+
+  penIcon.addEventListener('click', (event) => {
+    event.stopPropagation();
+    toggleDropdown();
+  });
+
+  brushPlus.addEventListener('click', () => {
+    changeBrushSize(1);
+  });
+
+  brushMinus.addEventListener('click', () => {
+    changeBrushSize(-1);
+  });
+
+  function toggleDropdown() {
+    const isVisible = dropdownMenu.classList.contains('show');
+
+    if (isVisible) {
+      dropdownMenu.classList.remove('show');
+      setTimeout(() => {
+        dropdownMenu.style.display = 'none';
+      }, 300);
+      document.removeEventListener('mousedown', handleOutsideInteraction);
+      document.removeEventListener('touchstart', handleOutsideInteraction);
+    } else {
+      dropdownMenu.style.display = 'block';
+      setTimeout(() => {
+        dropdownMenu.classList.add('show');
+      }, 10);
+      document.addEventListener('mousedown', handleOutsideInteraction);
+      document.addEventListener('touchstart', handleOutsideInteraction);
+    }
+  }
+
+  function handleOutsideInteraction(event) {
+    if (!dropdownMenu.contains(event.target) && !penIcon.contains(event.target)) {
+      toggleDropdown();
+    }
+  }
+
+  function changeBrushSize(delta) {
+    brushSize = Math.max(1, brushSize + delta); 
+    console.log(`Brush size changed to: ${brushSize}`);
+    setBrushSize(brushSize);
+  }
+});

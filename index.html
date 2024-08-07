@@ -15,8 +15,15 @@
     <div class="toolbar-left">
       <div class="Pen">
         <i class="fa-solid fa-pen"></i>
+        <div class="dropdown-menu">
+          <div class="dropdown-item" id="Brush-plus">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+          <div class="dropdown-item" id="Brush-minus">
+            <i class="fa-solid fa-minus"></i>
+          </div>
+        </div>
       </div>
-
       <div class="Highlight">
         <i class="fa-solid fa-highlighter"></i>
       </div>
@@ -25,14 +32,20 @@
       </div>
     </div>
 
+
     <div class="toolbar-right">
-      <div class="Undo">
-        <i class="fa-solid fa-undo"></i>
+      <div class="col" style="background-color: red;">
+      </div>
+      <div class="col" style="background-color: blue;">
+      </div>
+      <div class="col" style="background-color: yellow;">
       </div>
       <div class="Redo">
-        <i class="fa-solid fa-redo"></i>
+        <i class="fa-solid fa-plus"></i>
       </div>
     </div>
+
+    
 
 
     <!-- Temporarily Removed -->
@@ -46,10 +59,22 @@
 
   <div class="side-toolbar">
     <div class="BackButton">
-      <i class="fas fa-arrow-left"></i>
+      <i class="fa-solid fa-chevron-left"></i>
     </div>
-    <div class="Cross">
-      <i class="fas fa-times"></i>
+    <div class="Undo">
+      <i class="fa-solid fa-rotate-left" onclick="clearCanvas()"></i>
+    </div>
+  </div>
+
+  <div class="side-toolbar-r">
+    <div class="New">
+      <i class="fa-solid fa-plus"></i>
+    </div>
+    <div class="Save">
+      <i class="fa-solid fa-floppy-disk"></i>
+    </div>
+    <div class="Settings">
+      <i class="fa-solid fa-ellipsis-vertical"></i>
     </div>
   </div>
 
@@ -57,7 +82,7 @@
 
   <main>
     <div class="canvas-container">
-      <canvas id="drawingCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+      <canvas id="drawingCanvas"></canvas>
     </div>
   </main>
   <script src="src/script.js"></script>
