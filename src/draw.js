@@ -20,8 +20,8 @@ const highlighter = () => {
   console.log('Highlighter mode activated');
   isHighlighterMode = true;
   isEraserMode = false;
-  const highlighterSize = brushSize * 2; 
-  brushSize = highlighterSize;
+  // const highlighterSize = brushSize * 2; 
+  // brushSize = highlighterSize;
   currentColor = currentColor + '80'; 
 };
 
